@@ -1,4 +1,4 @@
-// 1.1
+// Day 1
 #include <bits/stdc++.h>
 
 #define END_OF_FILE -1
@@ -15,7 +15,7 @@ int getNr() {
     return nr;
 }
 
-int main() {
+int timesDepthIncreased() {
     int first = getNr();
     int second;
     int timesIncreased = 0;
@@ -24,6 +24,29 @@ int main() {
             ++timesIncreased;
         first = second;
     }
-    printf("%d", timesIncreased);
+    return timesIncreased;
+}
+
+int timesSlidingWindowIncreased() {
+    int first, second, third, fourth;
+    first = getNr();
+    second = getNr();
+    third = getNr();
+    
+    int timesIncreased = 0;
+    while ((fourth = getNr()) != END_OF_FILE) {
+        if (fourth > first)
+            ++timesIncreased;
+        first = second;
+        second = third;
+        third = fourth;
+    }
+    return timesIncreased;
+}
+
+int main() {
+    
+    // printf("%d", timesDepthIncreased());
+    printf("%d", timesSlidingWindowIncreased());
     return 0;
 }
