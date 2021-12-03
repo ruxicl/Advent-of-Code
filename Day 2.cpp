@@ -30,9 +30,9 @@ string getStr() {
 }
 
 int finalPosition() {
-    int depth, horizontalPos;
+    int depth, horizontalPos, nr;
     depth = horizontalPos = 0;
-    int nr;
+    nr = 0;
     while (nr != END_OF_FILE) {
         string command = getStr();
         nr = getNr();
@@ -47,8 +47,29 @@ int finalPosition() {
     return depth * horizontalPos;
 }
 
+int finalPositionUpdated() {
+    int depth, horizontalPos, aim, nr;
+    depth = horizontalPos = aim = 0;
+    nr = 0;
+    while (nr != END_OF_FILE) {
+        string command = getStr();
+        nr = getNr();
+        if (command == "up")
+            aim -= nr;
+        else if (command == "down")
+            aim += nr;
+        else if (command == "forward") {
+            horizontalPos += nr;
+            depth += (aim * nr);
+        }
+    }
+    
+    return depth * horizontalPos;
+}
+
 int main() {
     
-    printf("%d", finalPosition());
+    // printf("%d", finalPosition());
+    printf("%d", finalPositionUpdated());
     return 0;
 }
